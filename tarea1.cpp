@@ -1,6 +1,14 @@
 #include <iostream>
 
-std::string PerRec(int inicio, int final, std::string CurPer, std::string &Original){
+std::string PerRec(int izq, int der, std::string CurPer, std::string &Original, int pos){
+	int n_hijos = CurPer.size() + 1;
+
+	if (izq == der) {
+		return CurPer;
+	}
+	else {
+
+	}
 
 }
 
