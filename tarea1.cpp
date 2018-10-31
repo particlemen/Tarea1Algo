@@ -1,5 +1,6 @@
 #include <iostream>
-
+#include <fstream>
+#include <string>
 class Perm{
 
 public:
@@ -12,11 +13,11 @@ public:
 
 void PerRec(Perm *Datos){
 	int n_hijos = Datos->CurPer.size() + 1; //Obtengo numero de hijos
-	std::cout << "Iteracion numero " << n_hijos - 1 << " voy con " << Datos->CurPer << "\n";
+	//std::cout << "Iteracion numero " << n_hijos - 1 << " voy con " << Datos->CurPer << "\n";
 	double rango_p_hijo = (Datos->der - Datos->izq) / n_hijos; //Largo de rango que abarca cada hijo
 	double newizq = Datos->izq, newder; //Limites auxiliares que se usaran al probar nodos
-	std::cout << "Rango por hijo igual a " << rango_p_hijo << " \n";
-	if (int(rango_p_hijo) == 0) { //Llegamos a la hoja
+	//std::cout << "Rango por hijo igual a " << rango_p_hijo << " \n";
+	if (int(rango_p_hijo) < 1) { //Llegamos a la hoja
 		std::cout << "Chao lo Vimo\n";
 		return;
 	}
@@ -47,14 +48,51 @@ double factorial(int n)
 
 int main()
 {
-	std::cout << factorial(4);
+	std::ofstream archivo_salida;
+	std::ifstream archivo_entrada;
+	std::string linea;
+	archivo_salida.open ("output.txt");//abrimos el archivo de salida
+	archivo_entrada.open ("input.txt");//abrimos el archivo de entrada
+	int count = 0;
+	getline(archivo_entrada, linea);//se omite la primera linea del input
+	getline(archivo_entrada, linea);//leemos la primera linea del input que contiene el string
 	Perm Test;
 	Test.izq = 0;
 	Test.CurPer = "";
-	Test.Original = "QAZCDETGBMJUYHNVFRWSXIKLOP";
+	if (count%2 == 0) {/*linea par valor string */
+		Test.Original = linea;
+		}
+	getline(archivo_entrada, linea);// se obtiene la linea con el valor de k
+	std::string::size_type sz;
+	Test.k = std::stoi(linea,&sz);//pasamos de string a int el valor de k
+	count+=2;
 	Test.der = factorial(Test.Original.size());
-	Test.k = 165423;
-	std::cout << "It Begins \n";
-	PerRec( &Test );
+	std::cout << "Este es el k que lei del archivo:" << Test.k << "\n";
+	std::cout << "Este es el string que lei del archivo:" << Test.Original << "\n";
+	PerRec(&Test);
 	std::cout << "Finalmente tengo " << Test.CurPer << " \n";
+	archivo_salida << Test.CurPer<<"\n";/*escribo en el archivo output*/
+	getline(archivo_entrada, linea);//leo la siguiente linea
+	while (linea != "") {
+			Test.izq = 0;
+			Test.CurPer = "";
+			if (count%2 == 0) {/*linea par valor del string */
+				Test.Original = linea;
+			}
+			getline(archivo_entrada, linea); /*se obtiene la linea con el valor de k */
+			std::string::size_type sz;
+			Test.k = std::stoi(linea,&sz);
+			count+=2;
+			Test.der = factorial(Test.Original.size());
+			std::cout << "It Begins \n";
+			std::cout << "Este es el k que lei del archivo:" << Test.k << "\n";
+			std::cout << "Este es el string que lei del archivo:" << Test.Original << "\n";
+			PerRec(&Test);
+			std::cout << "Finalmente tengo " << Test.CurPer << " \n";
+			archivo_salida << Test.CurPer<<"\n";/*escribo en el archivo*/
+			getline(archivo_entrada, linea); /*siguente linea contiene el string */
+
+}
+archivo_salida.close();
+archivo_entrada.close();
 }
