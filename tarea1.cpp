@@ -18,7 +18,6 @@ void PerRec(Perm *Datos){
 	double newizq = Datos->izq, newder; //Limites auxiliares que se usaran al probar nodos
 	//std::cout << "Rango por hijo igual a " << rango_p_hijo << " \n";
 	if (rango_p_hijo < 1) { //Llegamos a la hoja
-		std::cout << "Chao lo Vimo\n";
 		return;
 	}
 	for (int i = 0; i<n_hijos; i++){ //Reviso cada hijo mio
@@ -67,10 +66,7 @@ int main()
 	Test.k = std::stoi(linea,&sz);//pasamos de string a int el valor de k
 	count+=2;
 	Test.der = factorial(Test.Original.size());
-	std::cout << "Este es el k que lei del archivo:" << Test.k << "\n";
-	std::cout << "Este es el string que lei del archivo:" << Test.Original << "\n";
 	PerRec(&Test);
-	std::cout << "Finalmente tengo " << Test.CurPer << " \n";
 	archivo_salida << Test.CurPer<<"\n";/*escribo en el archivo output*/
 	getline(archivo_entrada, linea);//leo la siguiente linea
 	while (linea != "") {
@@ -84,11 +80,7 @@ int main()
 			Test.k = std::stoi(linea,&sz);
 			count+=2;
 			Test.der = factorial(Test.Original.size());
-			std::cout << "It Begins \n";
-			std::cout << "Este es el k que lei del archivo:" << Test.k << "\n";
-			std::cout << "Este es el string que lei del archivo:" << Test.Original << "\n";
 			PerRec(&Test);
-			std::cout << "Finalmente tengo " << Test.CurPer << " \n";
 			archivo_salida << Test.CurPer << "\n";/*escribo en el archivo*/
 			getline(archivo_entrada, linea); /*siguente linea contiene el string */
 
