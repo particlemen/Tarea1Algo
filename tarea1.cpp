@@ -13,21 +13,19 @@ public:
 
 void PerRec(Perm *Datos){
 	int n_hijos = Datos->CurPer.size() + 1; //Obtengo numero de hijos
-	//std::cout << "Iteracion numero " << n_hijos - 1 << " voy con " << Datos->CurPer << "\n";
 	double rango_p_hijo = (Datos->der - Datos->izq) / n_hijos; //Largo de rango que abarca cada hijo
 	double newizq = Datos->izq, newder; //Limites auxiliares que se usaran al probar nodos
-	//std::cout << "Rango por hijo igual a " << rango_p_hijo << " \n";
 	if (rango_p_hijo < 1) { //Llegamos a la hoja
 		return;
 	}
 	for (int i = 0; i<n_hijos; i++){ //Reviso cada hijo mio
 		newder = newizq + rango_p_hijo; //Muevo el limite de la derecha
-		if ((newizq <= Datos->k) && (newder >= Datos->k)){ //Bingo
+		if ((newizq <= Datos->k) && (newder >= Datos->k)){ //Me voy por este hijo
 			Datos->izq = newizq; //Reemplazo en la clase
 			Datos->der = newder; //Reemplazo en la clase
 			char ci = Datos->Original[n_hijos - 1]; //Caracter a insertar en la palabra decodificada
 			Datos->CurPer.insert(i,1,ci); //Inserto este caracter
-			PerRec(Datos); //Fiush
+			PerRec(Datos); //Back
 			break;
 		}
 		else{
@@ -37,8 +35,7 @@ void PerRec(Perm *Datos){
 	return;
 }
 
-double factorial(int n)
-{
+double factorial(int n){
     if (n == 1)
         return 1;
     else
