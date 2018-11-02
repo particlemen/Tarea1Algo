@@ -89,7 +89,7 @@ int main()
 			std::cout << "Este es el string que lei del archivo:" << Test.Original << "\n";
 			PerRec(&Test);
 			std::cout << "Finalmente tengo " << Test.CurPer << " \n";
-			archivo_salida << Test.CurPer<<"\n";/*escribo en el archivo*/
+			archivo_salida << Test.CurPer << "\n";/*escribo en el archivo*/
 			getline(archivo_entrada, linea); /*siguente linea contiene el string */
 
 }
