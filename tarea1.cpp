@@ -17,7 +17,7 @@ void PerRec(Perm *Datos){
 	double rango_p_hijo = (Datos->der - Datos->izq) / n_hijos; //Largo de rango que abarca cada hijo
 	double newizq = Datos->izq, newder; //Limites auxiliares que se usaran al probar nodos
 	//std::cout << "Rango por hijo igual a " << rango_p_hijo << " \n";
-	if (int(rango_p_hijo) < 1) { //Llegamos a la hoja
+	if (rango_p_hijo < 1) { //Llegamos a la hoja
 		std::cout << "Chao lo Vimo\n";
 		return;
 	}

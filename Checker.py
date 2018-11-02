@@ -7,7 +7,6 @@ with open("output.txt") as our, open("TestFiles/out.txt") as manu:
 		total += 1
 		x = x.strip()
 		y = y.strip()
-		print(x)
 
 		if x == y:
 			SUCC += 1
