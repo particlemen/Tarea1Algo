@@ -1,3 +1,3 @@
 main: 
-	g++ tarea1.cpp -Wall -o Deco
+	g++ tarea1.cpp -Wall -o Decodificador
 	

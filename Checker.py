@@ -2,7 +2,7 @@
 total = 0
 SUCC = 0
 
-with open("output.txt") as our, open("TestFiles/out.txt") as manu: 
+with open("output.txt") as our, open("TestFiles/small_out.txt") as manu: 
 	for x, y in zip(our, manu):
 		total += 1
 		x = x.strip()
